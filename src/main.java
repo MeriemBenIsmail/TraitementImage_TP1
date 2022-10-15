@@ -75,6 +75,41 @@ public class main {
 
 	}
 
+	public static void histogramme(int[][] matrice) {
+		for (int k = 1; k <= 255; k++) {
+			int nbOccurrence = 0;
+
+			for (int i = 0; i < 255; i++)
+				for (int j = 0; j < matrice[i].length; j++)
+					if (matrice[i][j] == k)
+						nbOccurrence++;
+			if(nbOccurrence!=0) {
+				System.out.print(k + " -> " + nbOccurrence+ " | ");
+			}
+			
+		}
+	}
+	public static void histogrammeCumule(int[][] matrice) {
+		int x = 0;
+		for (int k = 1; k <= 255; k++) {
+			int nbOccurrence = 0;
+		
+			for (int i = 0; i < 255; i++)
+				for (int j = 0; j < matrice[i].length; j++)
+					if (matrice[i][j] == k) {
+						nbOccurrence++;
+					}
+			
+			int add = x+nbOccurrence;
+			if(nbOccurrence!=0) {
+				System.out.print(k + " -> " + add + " | ");
+			
+			}
+			x += nbOccurrence;
+			
+		}
+	}
+
 	public static void main(String[] args) throws IOException {
 		String nom = "C:\\Users\\meriem\\eclipse-workspace\\TraitementImage\\src\\chat.pgm";
 
@@ -86,6 +121,15 @@ public class main {
 			double ecartType = ecartTypeImagePgm(image, moyenne);
 			System.out.println("La moyenne de cette image = " + moyenne);
 			System.out.println("L'ecart type de cette image = " + ecartType);
+			System.out.println();
+			System.out.println("*********L'histogramme de cette image********");
+			System.out.println();
+			histogramme(image);
+			System.out.println();
+			System.out.println();
+			System.out.println("*********L'histogramme cumulé de cette image********");
+			System.out.println();
+			histogrammeCumule(image);
 
 		} catch (IOException e) {
 			e.printStackTrace();
